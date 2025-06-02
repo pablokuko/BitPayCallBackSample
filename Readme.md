@@ -48,8 +48,6 @@ Use Swagger UI, Postman, or curl to send a **POST** request to the available end
 }
 ```
 
-> ⚠️ **Note**: `exceptionStatus` is intentionally sent as a **string** (`"false"`), which causes the error.
-
 ---
 
 ### 4. Observe the Error
@@ -66,29 +64,29 @@ No overload for method 'ToString' takes 1 arguments
 
 ## 💡 Root Cause
 
-The BitPay SDK expects `exceptionStatus` to be a `bool`, but the input sends it as a `string`. This leads to deserialization problems and dynamic binding issues.
+The BitPay SDK has an issue when Deserializing the Invoice using System.Text.Json in line value.ToString(Formatting.None)
 
+class Invoice
+{
+...
+    public dynamic RefundAddresses
+    {
+        get
+        {
+            return _refundAddresses;
+        }
+        set
+        {
+            _refundAddresses = JsonConvert.DeserializeObject(value.ToString(Formatting.None));
+        }
+    }
+...
+}
 ---
 
 ## ✅ Fix
 
-To resolve the issue, send the value as a **boolean**, not a string:
-
-```json
-"exceptionStatus": false
-```
-
----
-
-## 🧪 Summary Table
-
-| Step # | Action                                                      |
-|--------|-------------------------------------------------------------|
-| 1      | Run the project with `dotnet run`                           |
-| 2      | Send POST to the only available endpoint                    |
-| 3      | Use the provided JSON with `"exceptionStatus": "false"`    |
-| 4      | Observe the `RuntimeBinderException`                       |
-| ✅     | Fix: Change `"exceptionStatus"` to a boolean `false`        |
+I would need a new version released with the fix, it can be either 5.X or in 6.X
 
 ---
 

@@ -29,7 +29,7 @@ Use Swagger UI, Postman, or curl to send a **POST** request to the available end
 ### 3. Use This JSON Payload in the Body
 
 ```json
-{
+         {
   "invoice": {
     "id": "ES7zSAmruwKK1m3wyXtjg6",
     "url": "https://bitpay.com/invoice?id=Hpqc63wvE1ZjzeeH4kEycF",
@@ -40,12 +40,15 @@ Use Swagger UI, Postman, or curl to send a **POST** request to the available end
     "expirationTime": 1620670754224,
     "currentTime": 1620671313184,
     "exceptionStatus": "false",
-    "refundAddresses": "givemeMoney@bitpay.com",
+    "refundAddresses": [
+      "givemeMoney@bitpay.com"
+    ],
     "amountPaid": 700700,
     "orderId": "1",
     "transactionCurrency": "BTC"
   }
 }
+
 ```
 
 ---

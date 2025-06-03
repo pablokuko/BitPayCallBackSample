@@ -11,7 +11,7 @@ namespace BPIssue.Api.Controllers
     {
 
         /* SAMPLE REQUEST BODY
-         {
+                  {
   "invoice": {
     "id": "ES7zSAmruwKK1m3wyXtjg6",
     "url": "https://bitpay.com/invoice?id=Hpqc63wvE1ZjzeeH4kEycF",
@@ -22,7 +22,16 @@ namespace BPIssue.Api.Controllers
     "expirationTime": 1620670754224,
     "currentTime": 1620671313184,
     "exceptionStatus": "false",
-    "refundAddresses": "givemeMoney@bitpay.com",
+    "refundAddresses": [
+      "givemeMoney@bitpay.com"
+    ],
+    "amountPaid": 700700,
+    "orderId": "1",
+    "transactionCurrency": "BTC"
+  }
+}
+
+
     "amountPaid": 700700,
     "orderId": "1",
     "transactionCurrency": "BTC"
